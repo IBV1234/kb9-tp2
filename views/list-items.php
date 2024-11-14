@@ -35,11 +35,15 @@ require "views/partials/nav.php";
             </tr>
         </thead>
         <tbody>
+            <?php foreach ($Sushis as $sushi) {  ?>
+                
             <tr>
-                <td>Maki de saumon</td>
-                <td>Saumon, concombre contenu dans une feuille d&#039;algue.</td>
-                <td>9.00</td>
-                <td>Makis</td>
+                <td><?= $sushi['name'] ?></td>
+                <td><?= $sushi['description'] ?></td>
+                <td><?= $sushi['price'] ?></td>
+                <?php $categoryName=getCategoryNameBySushiIdCategory($pdo,  $sushi['idCategory']) ?>
+                <td><?=$categoryName?></td>
+            
                 <td width=340>
                     <form style="display: inline;">
                         <input type="hidden" name="id" value="4">
@@ -55,26 +59,8 @@ require "views/partials/nav.php";
                     </form>
                 </td>
             </tr>
-            <tr>
-                <td>Maki de saumon et thon</td>
-                <td>Saumon, thon, oeuf, tobiko (caviar) et riz contenu dans une feuille d&#039;algue.</td>
-                <td>10.90</td>
-                <td>Makis</td>
-                <td width=340>
-                    <form style="display: inline;">
-                        <input type="hidden" name="id" value="5">
-                        <button type="submit" class="btn btn-secondary"><span class="bi-eye"></span> Voir</button>
-                    </form>
-                    <form style="display: inline;">
-                        <input type="hidden" name="id" value="5">
-                        <button type="submit" class="btn btn-primary"><span class="bi-pencil"></span> Modifier</button>
-                    </form>
-                    <form style="display: inline;">
-                        <input type="hidden" name="id" value="5">
-                        <button type="submit" class="btn btn-danger"><span class="bi-x"></span> Supprimer</button>
-                    </form>
-                </td>
-            </tr>
+
+            <?php }?>
         </tbody>
     </table>
 </div>

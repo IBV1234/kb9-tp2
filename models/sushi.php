@@ -35,3 +35,22 @@ function getSushiById(PDO $pdo,$id){
         throw new PDOException($ex->getMessage(),$ex->getCode());
     }
 }
+
+function getCategoryNameBySushiIdCategory(PDO $pdo, $idCategory){
+    $sql = 'SELECT C.name from categories C inner join items I on C.id = I.idCategory where C.id=:idCategory;';
+
+    try{
+    $stm = $pdo->prepare($sql);
+
+    $stm->bindValue('idCategory',$idCategory,PDO::PARAM_INT);
+
+    $stm ->execute();
+
+    $result = $stm ->fetch(PDO::FETCH_ASSOC);
+
+    return $result['name'];
+
+    }catch(Exception $ex){
+        throw new PDOException($ex->getMessage(),$ex->getCode());
+    }
+}
